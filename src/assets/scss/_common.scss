@@ -1,0 +1,91 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+html,
+body {
+    color: #333;
+    width: 100%;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-weight: normal;
+}
+
+.bg-title {
+    width: 750px;
+    height: 212px;
+    background: url(assets/images/bg-title.png) no-repeat;
+    background-size: 750px;
+    height: 212px;
+}
+
+input[type="button"],
+input[type="submit"],
+input[type="reset"] {
+    -webkit-appearance: none;
+}
+
+textarea {
+    -webkit-appearance: none;
+}
+
+button {
+    border-radius: 0;
+}
+
+.outline {
+    &-none {
+        outline: none;
+    }
+}
+
+.border {
+    &-box {
+        box-sizing: border-box;
+    }
+}
+
+ul,
+li {
+    list-style-type: none;
+}
+
+.pop {
+    &-wrap {
+        padding: 10px;
+        background: rgba(102, 102, 102, 0.9);
+        position: fixed;
+        z-index: 9;
+        top: 31%;
+        left: 50%;
+        margin-left: -290px;
+    }
+    &-box {
+        width: 560px;
+        height: 230px;
+        background: rgba(51, 51, 51, 0.5);
+    }
+}
+
+.fade-enter-active,
+.fade-leave-active {
+    transition: all .5s ease;
+}
+
+.fade-enter,
+.fade-leave-to {
+    opacity: 0;
+    transform: scale(1)
+}
+
+.btn-disabled {
+    opacity: 0.6;
+    /*no*/
+}

@@ -1,0 +1,23 @@
+.border {
+    &-none {
+        border: none;
+    }
+    &-ccc {
+        &_1 {
+            border: 1px solid #ccc;
+            /*no*/
+        }
+    }
+    &-ff4d6b {
+        &_1 {
+            border: 1px solid #ff4d6b;
+            /*no*/
+        }
+    }
+    &-radius {
+        &_5 {
+            border-radius: 5px;
+            /*no*/
+        }
+    }
+}

@@ -1,0 +1,12 @@
+.padding {
+    &-x {
+        &_70 {
+            padding-left: 70px;
+            padding-right: 70px;
+        }
+        &_30 {
+            padding-left: 30px;
+            padding-right: 30px;
+        }
+    }
+}
