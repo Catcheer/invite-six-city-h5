@@ -2,6 +2,8 @@
 // (runtime-only or standalone) has been set in webpack.base.conf with an alias.
 import Vue from 'vue'
 import App from './App'
+import vueResource from 'vue-resource'
+import 'whatwg-fetch'
 
 
 import { store } from './vuex/Store'
@@ -9,6 +11,7 @@ import { store } from './vuex/Store'
 // routers
 import { router } from './router'
 
+Vue.use(vueResource)
 
 
 // css

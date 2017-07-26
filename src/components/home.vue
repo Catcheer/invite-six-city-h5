@@ -93,6 +93,7 @@ import { mapState } from 'vuex'
 import { mapGetters } from 'vuex'
 import { mapMutations } from 'vuex'
 import { mapActions } from 'vuex'
+import Home from '../api/Home.js'
 
 import images from '../assets/images'
 
@@ -146,7 +147,16 @@ export default {
         this.hidePop()
         return
       }
-      this.$store.dispatch("reSend")
+
+
+      this.$store.dispatch("country").then((res) => {
+        console.log("dispatch")
+        console.log(res)
+        this.$store.dispatch("reSend")
+      })
+
+
+
     }
     // ...mapMutations({
     //   add: "increment"  // 映射 this.add() 为 this.$store.commit('increment')
@@ -164,7 +174,6 @@ export default {
     })
   },
   created() {
-
   }
 }
 </script>

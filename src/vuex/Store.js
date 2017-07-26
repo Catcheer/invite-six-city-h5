@@ -1,6 +1,9 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 import images from '../assets/images'
+import HTTP from '../fetch/http'
+import CONFIG from '../base.config'
+
 Vue.use(Vuex)
 
 export const store = new Vuex.Store({
@@ -15,28 +18,37 @@ export const store = new Vuex.Store({
     }
   },
   mutations: {
-    increment(state, Payload) {
-      state.count += Number(Payload.amount)
-    },
     showPop(state, Payload) {
       state.popObj = Payload
     },
     hidePop(state, Payload) {
       state.popObj = Payload
     },
-    reSendTime() {
-
-    }
   },
   actions: {
-    // incrementAsy({ commit }, Payload) {
-    //   setTimeout(function () {
-    //     commit("increment", ploy)
-    //   }, 3000)
-    // },
+    country({ commit }) {
+      const url = `${CONFIG.host}/catelog/country`
+      const obj = {
+        "host": "www.amazon.com",
+        "CurrencyCode": "CNY"
+      }
+      return HTTP.post(url, obj)
+    },
+
+    /**
+     * 显示提示框
+     * 
+     * @param {any} { commit } 
+     * @param {any} Payload 
+     */
     showPopAction({ commit }, Payload) {
       commit("showPop", Payload)
     },
+    /**
+     * 隐藏提示框
+     * 
+     * @param {any} { commit } 
+     */
     hidePopAction({ commit }) {
       let obj = {
         show: false,
@@ -48,6 +60,11 @@ export const store = new Vuex.Store({
       }, 1000)
 
     },
+    /**
+     * n秒后重新发送验证码
+     * 
+     * @param {any} { commit, state } 
+     */
     reSend({ commit, state }) {
       state.btnDisabled = true
       let reSendTimes = 60
