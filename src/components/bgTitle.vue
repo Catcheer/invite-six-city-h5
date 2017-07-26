@@ -1,6 +1,6 @@
 <template>
-  <div class="bg-title">
-  </div>
+  <section class="bg-title">
+  </section>
 </template>
 
 <script>
@@ -11,7 +11,7 @@ export default {
     }
   },
   methods: {
-   
+
   }
 
 }

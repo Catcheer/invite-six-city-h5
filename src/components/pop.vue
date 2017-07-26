@@ -1,10 +1,10 @@
 <template>
-  <div class="pop-wrap">
-    <div class="pop-box text-center">
+  <section class="pop-wrap">
+    <section class="pop-box text-center">
       <img class="width_80 margin-top_40 margin-bottom_24" :src="popObj.imgSrc" alt="">
       <p class="color-fff font-size_30">{{popObj.text}}</p>
-    </div>
-  </div>
+    </section>
+  </section>
 </template>
 
 <script>

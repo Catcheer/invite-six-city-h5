@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <section>
     <!-- title start -->
     <bg-title ref="profile"></bg-title>
     <!-- title end -->
@@ -13,18 +13,18 @@
   
     <!-- center block start -->
   
-    <div class="padding-x_70">
+    <section class="padding-x_70">
       <p class="text-right font-size_28">
         礼包已发放至手机尾号6666的账号中
       </p>
   
       <!-- 体验6city全球购 start -->
-      <div class="bg-color-ff4d6b height_70 margin-top_20   border-radius_5 font-size_30 text-center border-box color-fff line-height_70">立即体验6City全球购</div>
+      <section class="bg-color-ff4d6b height_70 margin-top_20   border-radius_5 font-size_30 text-center border-box color-fff line-height_70">立即体验6City全球购</section>
       <!-- 体验6city全球购 end -->
-    </div>
+    </section>
     <!-- center block end -->
   
-  </div>
+  </section>
 </template>
 
 <script>
