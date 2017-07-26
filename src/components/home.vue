@@ -51,7 +51,32 @@
           <div class="flex-1">手机尾号41564654领取了大礼包</div>
           <div class="width_135">07.13.13:13</div>
         </li>
+         <li class="font-size_24 color_666 line-height_33 margin-bottom_10 flex">
+          <div class="flex-1">手机尾号41564654领取了大礼包</div>
+          <div class="width_135">07.13.13:13</div>
+        </li>
+        <li class="font-size_24 color_666 line-height_33 margin-bottom_10 flex">
+          <div class="flex-1">手机尾号41564654领取了大礼包</div>
+          <div class="width_135">07.13.13:13</div>
+        </li>
+        <li class="font-size_24 color_666 line-height_33 margin-bottom_10 flex">
+          <div class="flex-1">手机尾号41564654领取了大礼包</div>
+          <div class="width_135">07.13.13:13</div>
+        </li>
+         <li class="font-size_24 color_666 line-height_33 margin-bottom_10 flex">
+          <div class="flex-1">手机尾号41564654领取了大礼包</div>
+          <div class="width_135">07.13.13:13</div>
+        </li>
+        <li class="font-size_24 color_666 line-height_33 margin-bottom_10 flex">
+          <div class="flex-1">手机尾号41564654领取了大礼包</div>
+          <div class="width_135">07.13.13:13</div>
+        </li>
+        <li class="font-size_24 color_666 line-height_33 margin-bottom_10 flex">
+          <div class="flex-1">手机尾号41564654领取了大礼包</div>
+          <div class="width_135">07.13.13:13</div>
+        </li>
       </ul>
+        <div class="scroll"></div>
   
       <!-- 领取记录 end -->
     </div>

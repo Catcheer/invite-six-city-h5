@@ -31,11 +31,26 @@ const routes = [
 // 3. 创建 router 实例，然后传 `routes` 配置
 // 你还可以传别的配置参数, 不过先这么简单着吧。
 export const router = new VueRouter({
-  routes // （缩写）相当于 routes: routes
+  mode: 'history',
+  routes,// （缩写）相当于 routes: routes
 })
 
 router.beforeEach((to, from, next) => {
-  console.log(to)
-  console.log(from)
-  next()
+
+  if (to.matched.some(record => record.meta.requiresAuth)) {
+    // this route requires auth, check if logged in
+    // if not, redirect to login page.
+    if (!auth.loggedIn()) {
+      next({
+        path: '/login',
+        query: { redirect: to.fullPath }
+      })
+    } else {
+      next()
+    }
+  } else {
+    next(vm => {
+      console.log(vm)
+    }) // 确保一定要调用 next()
+  }
 })
