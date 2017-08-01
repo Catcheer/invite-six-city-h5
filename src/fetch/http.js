@@ -1,3 +1,4 @@
+import CONFIG from '../base.config'
 const checkStatus = (response) => {
   if (response.status >= 200 && response.status < 300) {
     return response
@@ -34,12 +35,14 @@ export default {
         return error
       })
   },
-  post(url, obj) {
+  post(url, obj = {}) {
+    obj.AppKey = CONFIG.AppKey
     return fetch(url, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/x-www-form-urlencoded'
       },
+
       body: JSON.stringify(obj)
     })
       .then(checkStatus)

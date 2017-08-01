@@ -19,7 +19,7 @@
       </p>
   
       <!-- 体验6city全球购 start -->
-      <section class="bg-color-ff4d6b height_70 margin-top_20   border-radius_5 font-size_30 text-center border-box color-fff line-height_70">立即体验6City全球购</section>
+      <section class="bg-color-ff4d6b height_70 margin-top_20   border-radius_5 font-size_30 text-center border-box color-fff line-height_70" @click="experienceApp">立即体验6City全球购</section>
       <!-- 体验6city全球购 end -->
     </section>
     <!-- center block end -->
@@ -55,9 +55,13 @@ export default {
     hidePop() {
       this.$store.dispatch("hidePopAction")
     },
+    experienceApp() {
+      window.location = "https://itunes.apple.com/cn/app/id477927812"
+    }
 
   },
   computed: {
+
 
   },
   beforeRouteEnter(to, from, next) {

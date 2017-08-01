@@ -3,6 +3,7 @@ import Vuex from 'vuex'
 import images from '../assets/images'
 import HTTP from '../fetch/http'
 import CONFIG from '../base.config'
+import LANG from '../lang'
 
 Vue.use(Vuex)
 
@@ -26,13 +27,10 @@ export const store = new Vuex.Store({
     },
   },
   actions: {
-    country({ commit }) {
-      const url = `${CONFIG.host}/catelog/country`
-      const obj = {
-        "host": "www.amazon.com",
-        "CurrencyCode": "CNY"
-      }
-      return HTTP.post(url, obj)
+    phoneCode({ commit }, Payload) {
+      const url = `${CONFIG.host}/user/send/phoneCode `
+
+      return HTTP.post(url, Payload)
     },
 
     /**

@@ -94,6 +94,8 @@ import { mapGetters } from 'vuex'
 import { mapMutations } from 'vuex'
 import { mapActions } from 'vuex'
 import Home from '../api/Home.js'
+import LANG from '../lang'
+import HOME from '../tools/home'
 
 import images from '../assets/images'
 
@@ -132,31 +134,27 @@ export default {
       }
       this.$router.push({ name: 'Success' })
     },
+
     //  获取验证码事件
     getCodeEvent() {
       if (this.btnDisabled) return
       const tel = this.telNum
-      if (!Da.checkPhone(tel)) {
-        console.log("手机号码格式不对")
-        let obj = {
-          show: true,
-          imgSrc: images["iconX"],
-          text: "手机号码格式不对"
-        }
-        this.$store.dispatch("showPopAction", obj)
-        this.hidePop()
+      // 手机号码格式不正确
+      if (HOME.checkPhone(tel, this)) {
         return
       }
-
-
-      this.$store.dispatch("country").then((res) => {
-        console.log("dispatch")
+      const obj = {
+        "Phone": tel
+      }
+      this.$store.dispatch("phoneCode", obj).then((res) => {
         console.log(res)
+        // 手机号已经注册
+        if (HOME.hadRegister(res, this)) {
+          return
+        }
+        
         this.$store.dispatch("reSend")
       })
-
-
-
     }
     // ...mapMutations({
     //   add: "increment"  // 映射 this.add() 为 this.$store.commit('increment')
