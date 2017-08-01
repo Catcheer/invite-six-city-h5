@@ -3,7 +3,7 @@
 dev.api.6city.com/user/activity/clickCount 
 ```
 	"ShareType":2,
-	"UserId":10010,
+	"UserNo":str,
   "AppKey" : "78701677fa28465ca5fb624a51a9dca4"
 ```
 
@@ -28,7 +28,7 @@ dev.api.6city.com/user/activity
 	"Phone":"15021559927",
 	"PhoneCode":"581148",
 	"ShareType":1,
-	"UserId":10010,
+	"UserNo":10010,
   "AppKey" : "78701677fa28465ca5fb624a51a9dca4"
 ```
 

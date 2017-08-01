@@ -21,11 +21,10 @@ h6 {
 .bg-title {
   width: 10rem;
   height: 2.826667rem;
-  background: url(assets/images/bg-title.png) no-repeat;
+  background: url(../images/bg-title.png) no-repeat;
   -webkit-background-size: 10rem 10rem;
   -moz-background-size: 10rem;
   background-size: 10rem;
-  height: 2.826667rem;
 }
 
 input[type="button"],

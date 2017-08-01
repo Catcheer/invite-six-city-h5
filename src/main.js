@@ -15,7 +15,7 @@ Vue.use(vueResource)
 
 
 // css
-import './style.css'
+import './assets/css/style.css'
 
 Vue.config.productionTip = false
 

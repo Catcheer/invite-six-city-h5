@@ -76,7 +76,7 @@ export default {
       telNum: '',
       phoneCode: '',
       ShareType: 8,
-      UserId: ''
+      UserNo: ''
     }
   },
   name: 'home',
@@ -98,8 +98,8 @@ export default {
       const model = {
         "Phone": telNum,
         "PhoneCode": phoneCode,
-        "ShareType": 1,
-        "UserId": 10010
+        "ShareType": this.ShareType,
+        "UserNo": this.UserNo
       }
       this.$store.dispatch('activity', model).then(res => {
         console.log(res)
@@ -159,13 +159,13 @@ export default {
     })
   },
   created() {
-    this.UserId = this.$route.query.userId
+    this.UserNo = this.$route.query.UserNo
     HOME.qqBrowser(this)
     HOME.weixinBrowser(this)
     // 更新次数
     const clockObj = {
       "ShareType": this.ShareType,
-      "UserId": this.UserId
+      "UserNo": this.UserNo
     }
     this.$store.dispatch('clickCount', clockObj)
     // 领取记录

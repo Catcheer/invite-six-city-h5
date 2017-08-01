@@ -23,7 +23,7 @@ gulp.task('sass', () => gulp.src('./src/style.scss')
   }))
   .pipe(rename('style.css'))
   // .pipe(cssmin('style.css'))
-  .pipe(gulp.dest('./src/')))
+  .pipe(gulp.dest('./src/assets/css/')))
 
 
 gulp.task('dev', ['sass'], () => {
