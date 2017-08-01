@@ -19,7 +19,9 @@
       </p>
   
       <!-- 体验6city全球购 start -->
-      <section class="bg-color-ff4d6b height_70 margin-top_20   border-radius_5 font-size_30 text-center border-box color-fff line-height_70" @click="experienceApp">立即体验6City全球购</section>
+      <section @click="experienceApp">
+        <wid-btn btnTxt="立即体验6City全球购"></wid-btn>
+      </section>
       <!-- 体验6city全球购 end -->
     </section>
     <!-- center block end -->
@@ -28,6 +30,7 @@
 </template>
 
 <script>
+
 
 
 // 在单独构建的版本中辅助函数为 Vuex.mapState
@@ -39,6 +42,7 @@ import { mapActions } from 'vuex'
 import images from '../assets/images'
 
 import bgTitle from './bgTitle'
+import WidBtn from './widBtn'
 
 export default {
   data() {
@@ -49,7 +53,8 @@ export default {
   },
   name: 'success',
   components: {
-    "bgTitle": bgTitle
+    "bgTitle": bgTitle,
+    WidBtn
   },
   methods: {
     //  关闭提示框

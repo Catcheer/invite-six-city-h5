@@ -15,16 +15,13 @@
         <input v-model="phoneCode" class="bg-color-fa height_70 width_342  border-ccc_1 border-radius_5 font-size_28 padding-x_30 border-box" type="number" placeholder="验证码">
         <section @click="getCodeEvent" class="bg-color-fff0f2 height_70 width_248  border-ff4d6b_1 border-radius_5 font-size_28 text-center border-box color-ff4d6b line-height_70" :class="{'btn-disabled':btnDisabled}">{{getCode}}</section>
       </section>
-      <section @click="receiveNow" class="bg-color-ff4d6b height_70 margin-top_20   border-radius_5 font-size_30 text-center border-box color-fff line-height_70">立即领取</section>
+      <section @click="receiveNow">
+        <wid-btn btnTxt="立即领取"></wid-btn>
+      </section>
   
       <section class="height_50"></section>
       <!-- 领取规则 start -->
-      <section class="flex align-items-center margin-bottom_15">
-        <section class="flex-1 height_1 bg-color_666"></section>
-        <h2 class="width_160 font-size_30 margin-x_20 text-center">领取规则</h2>
-        <section class="flex-1 height_1 bg-color_666"></section>
-      </section>
-  
+      <line-title title='领取规则'></line-title>
       <ul>
         <li class="font-size_24 color_666 line-height_33">●&nbsp;&nbsp;一个手机号只能领取一次。</li>
         <li class="font-size_24 color_666 line-height_33">●&nbsp;&nbsp;仅限未使用过6City全球购的用户使用。</li>
@@ -33,11 +30,7 @@
       <!-- 领取规则 end -->
       <section class="height_50"></section>
       <!-- 领取记录 start -->
-      <section class="flex align-items-center margin-bottom_15">
-        <section class="flex-1 height_1 bg-color_666"></section>
-        <h2 class="width_160 font-size_30 margin-x_20 text-center">领取记录</h2>
-        <section class="flex-1 height_1 bg-color_666"></section>
-      </section>
+      <line-title title='领取记录'></line-title>
       <ul>
         <li v-for="item in recordList" :key="item.Phone" class="font-size_24 color_666 line-height_33 margin-bottom_10 flex">
           <section class="flex-1">手机尾号{{item.Phone}}领取了大礼包</section>
@@ -56,6 +49,7 @@
 
 <script>
 
+
 import Da from '../tools/da'
 // 在单独构建的版本中辅助函数为 Vuex.mapState
 import { mapState } from 'vuex'
@@ -68,6 +62,8 @@ import HOME from '../dao/Home'
 import images from '../assets/images'
 
 import bgTitle from './bgTitle'
+import LineTitle from './lineTitle'
+import WidBtn from './widBtn'
 
 export default {
   data() {
@@ -81,7 +77,9 @@ export default {
   },
   name: 'home',
   components: {
-    "bgTitle": bgTitle
+    "bgTitle": bgTitle,
+    LineTitle,
+    WidBtn
   },
   methods: {
     //  关闭提示框
@@ -115,13 +113,13 @@ export default {
     //  获取验证码事件
     getCodeEvent() {
       if (this.btnDisabled) return
-      const tel = this.telNum
+      const telNum = this.telNum
       // 手机号码格式不正确
-      if (HOME.checkPhone(tel, this)) {
+      if (HOME.checkPhone(telNum, this)) {
         return
       }
       const obj = {
-        "Phone": tel
+        "Phone": telNum
       }
       this.$store.dispatch("phoneCode", obj).then((res) => {
         console.log(res)
