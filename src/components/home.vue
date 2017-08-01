@@ -103,17 +103,9 @@ export default {
       }
       this.$store.dispatch('activity', model).then(res => {
         console.log(res)
-        // if (res.Message === LANG.Success) {
-        //   let obj = {
-        //     show: true,
-        //     imgSrc: images["iconOk"],
-        //     text: "领取成功"
-        //   }
-        //   this.$store.dispatch("showPopAction", obj)
-        //   this.hidePop().then(res => {
-        //     this.$router.push({ name: 'Success', query: { telEnd: telNum.substr(-4) } })
-        //   })
-        // }
+        if (HOME.codeErr(res, this)) {
+          return
+        }
         if (res.Message === LANG.Success) {
           this.$router.push({ name: 'Success', query: { telEnd: telNum.substr(-4) } })
         }

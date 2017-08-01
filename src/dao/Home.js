@@ -47,6 +47,26 @@ export default {
     return true
   },
 
+  /**
+   * 验证码错误
+   * 
+   * @param {any} res 
+   * @param {any} vm 
+   * @returns 
+   */
+  codeErr(res, vm) {
+    if (res.Message === LANG.CodeErr) {
+      let obj = {
+        show: true,
+        imgSrc: images["iconX"],
+        text: "验证码错误"
+      }
+      vm.$store.dispatch("showPopAction", obj)
+      vm.hidePop()
+      return true
+    }
+    return false
+  },
 
   /**
    * 手机号是否已经注册
