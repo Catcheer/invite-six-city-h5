@@ -15,7 +15,7 @@
   
     <section class="padding-x_70">
       <p class="text-right font-size_28">
-        礼包已发放至手机尾号6666的账号中
+        礼包已发放至手机尾号{{telEnd}}的账号中
       </p>
   
       <!-- 体验6city全球购 start -->
@@ -43,7 +43,8 @@ import bgTitle from './bgTitle'
 export default {
   data() {
     return {
-      images
+      images,
+      telEnd: ''
     }
   },
   name: 'success',
@@ -56,7 +57,7 @@ export default {
       this.$store.dispatch("hidePopAction")
     },
     experienceApp() {
-      window.location = "https://itunes.apple.com/cn/app/id477927812"
+      window.location = "https://itunes.apple.com/cn/app/6city%E5%85%A8%E7%90%83%E8%B4%AD-%E4%BB%A3%E4%BD%A0%E4%B9%B0%E9%81%8D%E5%85%A8%E7%90%83%E7%94%B5%E5%95%86/id1075802145?mt=8"
     }
 
   },
@@ -72,6 +73,8 @@ export default {
     next()
   },
   created() {
+    console.log(this.$route.query.telEnd)
+    this.telEnd = this.$route.query.telEnd
     let obj = {
       show: true,
       imgSrc: images["iconOk"],

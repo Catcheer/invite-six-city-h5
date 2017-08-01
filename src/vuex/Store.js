@@ -12,6 +12,7 @@ export const store = new Vuex.Store({
     count: 0,
     getCode: "获取验证码",
     btnDisabled: false,
+    recordList: [],
     popObj: {
       show: false,
       imgSrc: "",
@@ -25,12 +26,67 @@ export const store = new Vuex.Store({
     hidePop(state, Payload) {
       state.popObj = Payload
     },
+    setRecordList(state, Payload) {
+      state.recordList = Payload.List
+    },
   },
   actions: {
+    /**
+     * 获取验证码
+     * 
+     * @param {any} { commit } 
+     * @param {any} Payload 
+     * @returns 
+     */
     phoneCode({ commit }, Payload) {
-      const url = `${CONFIG.host}/user/send/phoneCode `
-
+      const url = `${CONFIG.host}/user/send/phoneCode`
       return HTTP.post(url, Payload)
+    },
+
+    /**
+     * 参与活动
+     * 
+     * @param {any} { commit } 
+     * @param {any} Payload 
+     * @returns 
+     */
+    activity({ commit }, Payload) {
+      const url = `${CONFIG.host}/user/activity `
+      return HTTP.post(url, Payload)
+    },
+    /**
+     * 领取记录
+     * 
+     * @param {any} { commit } 
+     * @param {any} Payload 
+     * @returns 
+     */
+    recordList({ commit }, Payload = {}) {
+      const url = `${CONFIG.host}/user/activity/list `
+      return HTTP.post(url, Payload).then(res => {
+        console.log('store recodList')
+        if (res.Message === LANG.Success) {
+          commit('setRecordList', res)
+          return res
+        }
+      }).catch(err => {
+        console.log(err)
+      })
+    },
+
+    /**
+     * 更新次数
+     * 
+     * @param {any} { commit } 
+     * @param {any} Payload 
+     * @returns 
+     */
+    clickCount({ commit }, Payload) {
+      const url = `${CONFIG.host}/user/activity/clickCount  `
+      return HTTP.post(url, Payload).then(res => {
+        console.log('clickCount')
+        console.log(res)
+      })
     },
 
     /**
@@ -48,14 +104,18 @@ export const store = new Vuex.Store({
      * @param {any} { commit } 
      */
     hidePopAction({ commit }) {
-      let obj = {
-        show: false,
-        imgSrc: '',
-        text: ""
-      }
-      setTimeout(() => {
-        commit("hidePop", obj)
-      }, 1000)
+      return new Promise((resolve, reject) => {
+        let obj = {
+          show: false,
+          imgSrc: '',
+          text: ""
+        }
+        setTimeout(() => {
+          commit("hidePop", obj)
+          resolve()
+        }, 2000)
+      })
+
 
     },
     /**
@@ -85,6 +145,7 @@ export const store = new Vuex.Store({
   },
   getters: {
     getCode: state => state.getCode,
-    btnDisabled: state => state.btnDisabled
+    btnDisabled: state => state.btnDisabled,
+    recordList: state => state.recordList
   }
 })

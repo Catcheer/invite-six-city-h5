@@ -12,7 +12,7 @@
     <section class="padding-x_70 margin-top_40">
       <input v-model="telNum" class="bg-color-fa height_70 width-b_100  border-ccc_1 border-radius_5 font-size_28 padding-x_30 border-box" type="number" placeholder="手机号">
       <section class="flex justify-between margin-top_20">
-        <input v-model="verCode" class="bg-color-fa height_70 width_342  border-ccc_1 border-radius_5 font-size_28 padding-x_30 border-box" type="number" placeholder="验证码">
+        <input v-model="phoneCode" class="bg-color-fa height_70 width_342  border-ccc_1 border-radius_5 font-size_28 padding-x_30 border-box" type="number" placeholder="验证码">
         <section @click="getCodeEvent" class="bg-color-fff0f2 height_70 width_248  border-ff4d6b_1 border-radius_5 font-size_28 text-center border-box color-ff4d6b line-height_70" :class="{'btn-disabled':btnDisabled}">{{getCode}}</section>
       </section>
       <section @click="receiveNow" class="bg-color-ff4d6b height_70 margin-top_20   border-radius_5 font-size_30 text-center border-box color-fff line-height_70">立即领取</section>
@@ -39,42 +39,11 @@
         <section class="flex-1 height_1 bg-color_666"></section>
       </section>
       <ul>
-        <li class="font-size_24 color_666 line-height_33 margin-bottom_10 flex">
-          <section class="flex-1">手机尾号41564654领取了大礼包</section>
-          <section class="width_135">07.13.13:13</section>
+        <li v-for="item in recordList" :key="item.Phone" class="font-size_24 color_666 line-height_33 margin-bottom_10 flex">
+          <section class="flex-1">手机尾号{{item.Phone}}领取了大礼包</section>
+          <section class="width_135">{{item.CreateTime}}</section>
         </li>
-        <li class="font-size_24 color_666 line-height_33 margin-bottom_10 flex">
-          <section class="flex-1">手机尾号41564654领取了大礼包</section>
-          <section class="width_135">07.13.13:13</section>
-        </li>
-        <li class="font-size_24 color_666 line-height_33 margin-bottom_10 flex">
-          <section class="flex-1">手机尾号41564654领取了大礼包</section>
-          <section class="width_135">07.13.13:13</section>
-        </li>
-        <li class="font-size_24 color_666 line-height_33 margin-bottom_10 flex">
-          <section class="flex-1">手机尾号41564654领取了大礼包</section>
-          <section class="width_135">07.13.13:13</section>
-        </li>
-        <li class="font-size_24 color_666 line-height_33 margin-bottom_10 flex">
-          <section class="flex-1">手机尾号41564654领取了大礼包</section>
-          <section class="width_135">07.13.13:13</section>
-        </li>
-        <li class="font-size_24 color_666 line-height_33 margin-bottom_10 flex">
-          <section class="flex-1">手机尾号41564654领取了大礼包</section>
-          <section class="width_135">07.13.13:13</section>
-        </li>
-        <li class="font-size_24 color_666 line-height_33 margin-bottom_10 flex">
-          <section class="flex-1">手机尾号41564654领取了大礼包</section>
-          <section class="width_135">07.13.13:13</section>
-        </li>
-        <li class="font-size_24 color_666 line-height_33 margin-bottom_10 flex">
-          <section class="flex-1">手机尾号41564654领取了大礼包</section>
-          <section class="width_135">07.13.13:13</section>
-        </li>
-        <li class="font-size_24 color_666 line-height_33 margin-bottom_10 flex">
-          <section class="flex-1">手机尾号41564654领取了大礼包</section>
-          <section class="width_135">07.13.13:13</section>
-        </li>
+  
       </ul>
       <section class="scroll"></section>
   
@@ -93,9 +62,8 @@ import { mapState } from 'vuex'
 import { mapGetters } from 'vuex'
 import { mapMutations } from 'vuex'
 import { mapActions } from 'vuex'
-import Home from '../api/Home.js'
 import LANG from '../lang'
-import HOME from '../tools/home'
+import HOME from '../dao/Home'
 
 import images from '../assets/images'
 
@@ -106,7 +74,9 @@ export default {
     return {
       images,
       telNum: '',
-      verCode: '',
+      phoneCode: '',
+      ShareType: 8,
+      UserId: ''
     }
   },
   name: 'home',
@@ -116,23 +86,38 @@ export default {
   methods: {
     //  关闭提示框
     hidePop() {
-      this.$store.dispatch("hidePopAction")
+      return this.$store.dispatch("hidePopAction")
     },
     //  立即领取事件
     receiveNow() {
-      const telLen = this.telNum.toString().trim().length
-      const codeLen = this.verCode.toString().trim().length
-      if (telLen === 0 || codeLen === 0) {
-        let obj = {
-          show: true,
-          imgSrc: images["iconX"],
-          text: "请填写手机号及验证码"
-        }
-        this.$store.dispatch("showPopAction", obj)
-        this.hidePop()
+      const telNum = this.telNum
+      const phoneCode = this.phoneCode
+      if (!HOME.verifyInput(this)) {
         return
       }
-      this.$router.push({ name: 'Success' })
+      const model = {
+        "Phone": telNum,
+        "PhoneCode": phoneCode,
+        "ShareType": 1,
+        "UserId": 10010
+      }
+      this.$store.dispatch('activity', model).then(res => {
+        console.log(res)
+        // if (res.Message === LANG.Success) {
+        //   let obj = {
+        //     show: true,
+        //     imgSrc: images["iconOk"],
+        //     text: "领取成功"
+        //   }
+        //   this.$store.dispatch("showPopAction", obj)
+        //   this.hidePop().then(res => {
+        //     this.$router.push({ name: 'Success', query: { telEnd: telNum.substr(-4) } })
+        //   })
+        // }
+        if (res.Message === LANG.Success) {
+          this.$router.push({ name: 'Success', query: { telEnd: telNum.substr(-4) } })
+        }
+      })
     },
 
     //  获取验证码事件
@@ -152,10 +137,11 @@ export default {
         if (HOME.hadRegister(res, this)) {
           return
         }
-        
         this.$store.dispatch("reSend")
       })
     }
+
+
     // ...mapMutations({
     //   add: "increment"  // 映射 this.add() 为 this.$store.commit('increment')
     // }),
@@ -169,9 +155,24 @@ export default {
       count: state => state.count,
       getCode: state => state.getCode,
       btnDisabled: state => state.btnDisabled,
+      recordList: state => state.recordList
     })
   },
   created() {
+    this.UserId = this.$route.query.userId
+    HOME.qqBrowser(this)
+    HOME.weixinBrowser(this)
+    // 更新次数
+    const clockObj = {
+      "ShareType": this.ShareType,
+      "UserId": this.UserId
+    }
+    this.$store.dispatch('clickCount', clockObj)
+    // 领取记录
+    this.$store.dispatch('recordList').then((list) => {
+      console.log('create list')
+      console.log(list)
+    })
   }
 }
 </script>

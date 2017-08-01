@@ -14,6 +14,13 @@ dev.api.6city.com/user/send/phoneCode
 "Phone":15021559927,
 "AppKey" : "78701677fa28465ca5fb624a51a9dca4"
 ```
+成功时返回
+```
+Code:0
+Message:"成功"
+Success:true
+```
+
 
 ### 参加活动
 dev.api.6city.com/user/activity 
@@ -26,6 +33,7 @@ dev.api.6city.com/user/activity
 ```
 
 ###  领取记录
+dev.api.6city.com/user/activity/list
   ```
   "AppKey" : "78701677fa28465ca5fb624a51a9dca4"
   ```
