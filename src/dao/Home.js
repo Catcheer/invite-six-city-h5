@@ -24,6 +24,23 @@ export default {
   },
 
   /**
+   * 
+   * 
+   */
+  processSearch() {
+    let obj = {}
+    const search = window.location.search.substr(1)
+    const paramArr = search.split('&')
+    const len = paramArr.length
+    for (let i = 0; i < len; i++) {
+      const temArr = paramArr[i].split('=')
+      obj[temArr[0]] = temArr[1]
+    }
+    console.log(obj)
+    return obj
+  },
+
+  /**
    * 手机号&验证码
    * 
    * @param {any} vm 
@@ -105,9 +122,9 @@ export default {
    */
   weixinBrowser(vm) {
     if (Da.isWeiXin()) {
-      const origin = vm.$route.query
-      if (origin.type) {
-        vm.ShareType = origin.type
+      const type = vm.search.type
+      if (type) {
+        vm.ShareType = type
       }
     }
   }

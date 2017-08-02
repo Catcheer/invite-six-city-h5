@@ -71,6 +71,7 @@ export default {
       images,
       telNum: '',
       phoneCode: '',
+      search: {},
       ShareType: 8,
       UserNo: ''
     }
@@ -105,7 +106,7 @@ export default {
           return
         }
         if (res.Message === LANG.Success) {
-          this.$router.push({ name: 'Success', query: { telEnd: telNum.substr(-4) } })
+          this.$router.push({ path: '/success', query: { telEnd: telNum.substr(-4) } })
         }
       })
     },
@@ -149,7 +150,9 @@ export default {
     })
   },
   created() {
-    this.UserNo = this.$route.query.UserNo
+    const locationSearch = HOME.processSearch()
+    this.search = Object.assign({}, locationSearch)
+    this.UserNo = this.search.UserNo
     HOME.qqBrowser(this)
     HOME.weixinBrowser(this)
     // 更新次数
