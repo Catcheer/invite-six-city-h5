@@ -10,9 +10,9 @@
   
     <!-- center block start -->
     <section class="padding-x_70 margin-top_40">
-      <input v-model="telNum" class="bg-color-fa height_70 width-b_100  border-ccc_1 border-radius_5 font-size_28 padding-x_30 border-box" type="number" placeholder="手机号">
+      <input v-model="telNum" class="bg-color-fa outline-none height_70 width-b_100  border-ccc_1 border-radius_5 font-size_28 padding-x_30 border-box" type="number" placeholder="手机号">
       <section class="flex justify-between margin-top_20">
-        <input v-model="phoneCode" class="bg-color-fa height_70 width_342  border-ccc_1 border-radius_5 font-size_28 padding-x_30 border-box" type="number" placeholder="验证码">
+        <input v-model="phoneCode" class="bg-color-fa outline-none height_70 width_342  border-ccc_1 border-radius_5 font-size_28 padding-x_30 border-box" type="number" placeholder="验证码">
         <section @click="getCodeEvent" class="bg-color-fff0f2 height_70 width_248  border-ff4d6b_1 border-radius_5 font-size_28 text-center border-box color-ff4d6b line-height_70" :class="{'btn-disabled':btnDisabled}">{{getCode}}</section>
       </section>
       <section @click="receiveNow">

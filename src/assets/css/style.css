@@ -27,10 +27,10 @@ h6 {
   background-size: 10rem;
 }
 
-input[type="button"],
-input[type="submit"],
-input[type="reset"] {
+input {
   -webkit-appearance: none;
+  outline: none;
+  -webkit-tap-highlight-color: transparent;
 }
 
 textarea {
@@ -89,6 +89,10 @@ li {
   -moz-transform: scale(1);
   -ms-transform: scale(1);
   transform: scale(1);
+}
+
+.outline-none {
+  outline: none;
 }
 
 .btn-disabled {

@@ -14,7 +14,7 @@
     <!-- center block start -->
   
     <section class="padding-x_70">
-      <p class="text-right font-size_28">
+      <p class="text-center font-size_28">
         礼包已发放至手机尾号{{telEnd}}的账号中
       </p>
   
@@ -62,7 +62,8 @@ export default {
       this.$store.dispatch("hidePopAction")
     },
     experienceApp() {
-      window.location = "https://itunes.apple.com/cn/app/6city%E5%85%A8%E7%90%83%E8%B4%AD-%E4%BB%A3%E4%BD%A0%E4%B9%B0%E9%81%8D%E5%85%A8%E7%90%83%E7%94%B5%E5%95%86/id1075802145?mt=8"
+      window.open("https://itunes.apple.com/cn/app/6city%E5%85%A8%E7%90%83%E8%B4%AD-%E4%BB%A3%E4%BD%A0%E4%B9%B0%E9%81%8D%E5%85%A8%E7%90%83%E7%94%B5%E5%95%86/id1075802145?mt=8")
+      // window.location = "https://github.com/gulpjs/gulp/blob/master/README.md"
     }
 
   },
