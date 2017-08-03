@@ -29,6 +29,9 @@ module.exports = merge(baseWebpackConfig, {
     new ExtractTextPlugin({
       filename: utils.assetsPath('css/[name].[contenthash].css')
     }),
+
+
+
     // new ExtractTextPlugin("style.css"),
     new HtmlWebpackPlugin({
       filename: 'index.html',
