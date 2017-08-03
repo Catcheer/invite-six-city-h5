@@ -91,8 +91,16 @@ export default {
     receiveNow() {
       const telNum = this.telNum
       const phoneCode = this.phoneCode
+      // 手机号验证码未填写
       if (!HOME.verifyInput(this)) {
         return
+      }
+      // 手机号码格式不正确
+      if (HOME.checkPhone(telNum, this)) {
+        return
+      }
+      const obj = {
+        "Phone": telNum
       }
       const model = {
         "Phone": telNum,
@@ -102,6 +110,11 @@ export default {
       }
       this.$store.dispatch('activity', model).then(res => {
         console.log(res)
+        // 手机号已经注册
+        if (HOME.hadRegister(res, this)) {
+          return
+        }
+        // 验证码错误
         if (HOME.codeErr(res, this)) {
           return
         }
@@ -109,6 +122,9 @@ export default {
           this.$router.push({ path: '/success', query: { telEnd: telNum.substr(-4) } })
         }
       })
+
+
+
     },
 
     //  获取验证码事件

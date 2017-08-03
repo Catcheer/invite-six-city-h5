@@ -36,6 +36,14 @@ export default {
     } else {
       return false;
     }
+  },
+
+  isAndroid() {
+    var u = navigator.userAgent;
+    if (u.indexOf('Android') > -1 || u.indexOf('Linux') > -1) {
+      return true;
+    }
+    return false;
   }
 
 }

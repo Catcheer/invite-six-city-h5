@@ -38,6 +38,7 @@ import { mapState } from 'vuex'
 import { mapGetters } from 'vuex'
 import { mapMutations } from 'vuex'
 import { mapActions } from 'vuex'
+import Da from '../tools/da'
 
 import images from '../assets/images'
 
@@ -62,8 +63,14 @@ export default {
       this.$store.dispatch("hidePopAction")
     },
     experienceApp() {
-      window.open("https://itunes.apple.com/cn/app/6city%E5%85%A8%E7%90%83%E8%B4%AD-%E4%BB%A3%E4%BD%A0%E4%B9%B0%E9%81%8D%E5%85%A8%E7%90%83%E7%94%B5%E5%95%86/id1075802145?mt=8")
-      // window.location = "https://github.com/gulpjs/gulp/blob/master/README.md"
+      let url = 'http://mp.weixin.qq.com/mp/redirect?url=https://itunes.apple.com/cn/app/6city%E5%85%A8%E7%90%83%E8%B4%AD-%E4%BB%A3%E4%BD%A0%E4%B9%B0%E9%81%8D%E5%85%A8%E7%90%83%E7%94%B5%E5%95%86/id1075802145?mt=8'
+      if (Da.isAndroid) {
+        url = 'http://a.app.qq.com/o/simple.jsp?pkgname=com.panli.android.sixcity'
+      }
+
+      // setTimeout(function () {
+      window.open(url)
+      // }, 200);
     }
 
   },
