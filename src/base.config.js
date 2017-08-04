@@ -1,6 +1,6 @@
 export default {
-  // 'host': 'http://api.6city.com',
-  'host': 'http://192.168.1.187:9000',
+  'host': 'http://api.6city.com',
+  // 'host': 'http://192.168.1.187:9000',
 
   "AppKey": "78701677fa28465ca5fb624a51a9dca4",
   //从url链接中判断朋友圈||微信好友
