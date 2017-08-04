@@ -18,7 +18,9 @@ Vue.use(VueRouter)
 // 或者，只是一个组件配置对象。
 // 我们晚点再讨论嵌套路由。
 const routes = [
-  { path: '/home', component: Home, name: "Home" },
+  {
+    path: '/home', component: Home, name: "Home"
+  },
   { path: '/success', component: Success, name: "Success" },
   // { path: '/inviate', component: Inviate, name: "Invite" },
   { path: '', component: Home },
@@ -37,21 +39,16 @@ export const router = new VueRouter({
 })
 
 router.beforeEach((to, from, next) => {
+  console.log('to')
+  console.log(to.path)
+  const recived = Number(window.localStorage.recived)
+  if (recived === 2 && to.path === '/') {
+    console.log(window.localStorage.recived)
 
-  if (to.matched.some(record => record.meta.requiresAuth)) {
-    // this route requires auth, check if logged in
-    // if not, redirect to login page.
-    if (!auth.loggedIn()) {
-      next({
-        path: '/login',
-        query: { redirect: to.fullPath }
-      })
-    } else {
-      next()
-    }
-  } else {
-    next(vm => {
-      console.log(vm)
-    }) // 确保一定要调用 next()
+
+    next({ path: '/success' })
+
   }
+  next()
+
 })

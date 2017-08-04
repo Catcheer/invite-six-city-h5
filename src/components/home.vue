@@ -119,7 +119,8 @@ export default {
           return
         }
         if (res.Message === LANG.Success) {
-          this.$router.push({ path: '/success', query: { telEnd: telNum.substr(-4) } })
+          window.localStorage.telEnd = telNum.substr(-4)
+          this.$router.push({ path: '/success' })
         }
       })
 

@@ -5,10 +5,12 @@
     <!-- title end -->
   
     <!-- RMB 15 cupon sratr  -->
-    <img class="width_680 " :src="images.orderFee" alt="">
+    <!-- <img class="width_680 " :src="images.orderFee" alt=""> -->
+    <img class="width_680 " src='../assets/images/order_fee.png' alt="">
     <!-- RMB 15 cupon end  -->
     <!-- RMB 1500 cupon start  -->
-    <img class="width_680 " :src="images.transportFee" alt="">
+    <!-- <img class="width_680 " :src="images.transportFee" alt=""> -->
+    <img class="width_680 " src="../assets/images/transport_fee.png" alt="">
     <!-- RMB 1500 cupon end  -->
   
     <!-- center block start -->
@@ -78,16 +80,14 @@ export default {
 
 
   },
-  beforeRouteEnter(to, from, next) {
-    // 在渲染该组件的对应路由被 confirm 前调用
-    // 不！能！获取组件实例 `this`
-    // 因为当钩子执行前，组件实例还没被创建
 
-    next()
-  },
   created() {
-    console.log(this.$route.query.telEnd)
-    this.telEnd = this.$route.query.telEnd
+    // const img=new Image()
+    // img.src=CONFIG
+
+    console.log(window.localStorage.telEnd)
+    console.log(window.localStorage.recived)
+    this.telEnd = window.localStorage.telEnd
     let obj = {
       show: true,
       imgSrc: images["iconOk"],
@@ -95,6 +95,7 @@ export default {
     }
     this.$store.dispatch("showPopAction", obj)
     this.hidePop()
+    window.localStorage.recived = 2
     // console.log("领取成功")
   }
 }
