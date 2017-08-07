@@ -179,7 +179,10 @@ export default {
     }
     this.$store.dispatch('clickCount', clockObj)
     // 领取记录
-    this.$store.dispatch('recordList').then((list) => {
+    const recordObj = {
+      "UserNo": this.UserNo
+    }
+    this.$store.dispatch('recordList', recordObj).then((list) => {
       console.log('create list')
       console.log(list)
     })
